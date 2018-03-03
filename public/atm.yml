@@ -1,0 +1,82 @@
+# Example YAML to get you started quickly.
+# Be aware that YAML has indentation based scoping.
+# Code completion support is available so start typing for available options.
+swagger: '2.0'
+
+# This is your document metadata
+info:
+  version: "0.0.1"
+  title: REST ATM API
+
+host: localhost:3000
+
+# Describe your paths here
+paths:
+  /api/v1/notes/deposit:
+    post:
+      description: |
+        Deposit notes into ATM
+      tags:
+        - Notes
+      parameters:
+        -
+          name: notes
+          in: body
+          description: Hash of deposited notes
+          required: true
+          schema:
+            $ref: '#/definitions/Deposit'
+      responses:
+        200:
+          description: Successful response
+          schema:
+            $ref: '#/definitions/MessageOk'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/MessageErr'
+  /api/v1/notes/withdraw:
+    get:
+      description: |
+        Withdraw money from ATM
+      tags:
+        - Notes
+      parameters:
+        -
+          name: amount
+          in: query
+          description: Amount of money to withdraw
+          required: true
+          type: integer
+          format: int64
+      responses:
+        200:
+          description: Successful response
+          schema:
+            $ref: '#/definitions/MessageOk'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/MessageErr'
+
+definitions:
+  Deposit:
+    type: object
+    properties:
+      notes:
+        type: object
+        properties:
+          50:
+            type: integer
+          25:
+            type: integer
+  MessageOk:
+    type: object
+    properties:
+      message:
+        type: string
+  MessageErr:
+    type: object
+    properties:
+      message:
+        type: string

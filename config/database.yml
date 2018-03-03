@@ -1,0 +1,18 @@
+#
+default: &default
+  adapter: postgresql
+  encoding: utf8
+  pool: 5
+  timeout: 5000
+
+development:
+  <<: *default
+  database: atm_development
+
+test:
+  <<: *default
+  database: atm_test
+
+production:
+  <<: *default
+  database: atm_production
