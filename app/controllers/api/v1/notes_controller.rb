@@ -5,6 +5,8 @@ class Api::V1::NotesController < Api::V1::ApiController
     else
       render json: { errors: { message: 'Unable to proceed. Please try again later' } }
     end
+  rescue ActiveRecord::RecordInvalid => e
+    render json: { errors: { message: e.message } }
   end
 
   def withdraw
