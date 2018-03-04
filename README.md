@@ -18,6 +18,6 @@ rails db:create db:migrate db:seed
 ```
 And finally run `rails s`.
 
-To get acquainted with the existing endpoints and examine them, go to documentation at `http://localhost:3000/docs`
+To get acquainted with the existing endpoints and examine them, go to documentation at http://localhost:3000/docs
 
 To run test execute `rspec` in terminal
